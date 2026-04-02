@@ -81,6 +81,12 @@ async function sendMessage() {
 
         const data = await res.json();
 
+console.log("Resposta completa:", data);
+
+if (data.error) {
+    throw new Error(data.error.message);
+}
+
         const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sem resposta.";
 
         addMessage("bot", reply);
